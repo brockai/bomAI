@@ -21,7 +21,6 @@ const BMEAPP = ({ Component, pageProps }: AppProps) => {
     /**
      * Dark Mode
      */
-    console.log(COLORS)
     const { themeStatus } = useDarkMode();
     console.log(themeStatus)
 
