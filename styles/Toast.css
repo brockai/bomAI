@@ -1,0 +1,18 @@
+/* src/styles/Toast.css */
+.Toastify__toast-container--bottom-center {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100vw;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Toastify__toast {
+  width: 100vw;
+  height: 30vw;
+  text-align: center;
+  font-size: 2rem;
+}
