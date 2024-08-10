@@ -41,13 +41,6 @@ const NavBar: React.FC = () => {
                     </Badge>
                 </div>
             </div>
-            {/* <div>
-                <a href="https://brockai.com/" style={{ display: 'flex', alignItems: 'center', color: 'white', textDecoration: 'none', marginRight: '1rem' }}>
-                    <img src="/brockai.png" alt="BrockAI Logo" width={150} height={10} style={{ marginRight: '1rem' }} />
-
-                </a>
-                {isAuthenticated && <a href="/protected" style={{ color: 'white', textDecoration: 'none' }}>Protected</a>}
-            </div> */}
             <div className="pt-1">
                 {!isAuthenticated && (
                     <div className="flex items-center space-x-2 border pt-2 pb-2 pr-4 pl-4 rounded-lg"
