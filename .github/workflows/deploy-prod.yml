@@ -1,0 +1,51 @@
+name: Deploy Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Clone-bomai: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone bomai repo
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.DROPLET_IP}}
+          username: ${{ secrets.DROPLET_USERNAME }}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          script: |
+            rm -rf ~/bomai
+            git clone -b main git@github.com:brockai/bomai.git ~/bomai
+            
+  Deploy-Bomai:
+    runs-on: ubuntu-latest
+    needs: Clone-bomai
+    steps:
+      - name: Deploy client
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DROPLET_IP }}
+          username: ${{ secrets.DROPLET_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+            use 18.17.0
+
+            rm /var/www/bomai -r || true
+            cp ~/bomai -r /var/www/bomai
+            cp ~/.env.local.bomai /var/www/bomai/.env.local
+            cd /var/www/bmel
+            npm install
+            npm run build
+            if [ $? -eq 0 ]; then
+              pm2 delete "bomai-client"
+              pm2 start npm --name "bomai-client" -- start
+            else
+              echo "Build failed, deployment aborted."
+              exit 1
+            fi
