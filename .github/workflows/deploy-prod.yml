@@ -39,7 +39,7 @@ jobs:
             rm /var/www/bomai -r || true
             cp ~/bomai -r /var/www/bomai
             cp ~/.env.local.bomai /var/www/bomai/.env.local
-            cd /var/www/bmel
+            cd /var/www/bomai
             npm install
             npm run build
             if [ $? -eq 0 ]; then
