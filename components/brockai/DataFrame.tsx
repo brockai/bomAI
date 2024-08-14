@@ -19,11 +19,6 @@ const DataFrame: React.FC<DataFrameComponentProps> = ({ isAuthenticated }) => {
 
     const isMobile = useIsMobile();
 
-    const convertEpochTime = async (timestamp:any) => {
-        const date = dayjs(timestamp * 1000);
-        return date.format('YYYY-MM-DD HH:mm:ss');
-    }
-
     const fetchTenantFiles = async () => {
 
         try {
