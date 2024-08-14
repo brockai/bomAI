@@ -65,3 +65,13 @@ export const deleteDoc = async (payload: any) => {
         return handleAxiosError(error);
     }
 };
+
+export const fetchToken = async () => {
+    try {
+        const response = await axiosInstance.get('/token');
+        return response.data;
+    } catch (error) {
+        return handleAxiosError(error);
+    }
+};
+

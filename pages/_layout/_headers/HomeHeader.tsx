@@ -9,7 +9,7 @@ const HomeHeader = () => {
 	const { darkModeStatus, setDarkModeStatus } = useDarkMode();
 
 	const brockaiBg = {
-		backgroundColor: 'rgba(255, 75, 75, 0.2)', // Replace with your desired color
+		backgroundColor: 'rgba(255, 75, 75, 0.2)'
 	};
 
 	const textColorStyle = {

@@ -18,7 +18,7 @@ jobs:
           script: |
             rm -rf ~/bomai
             git clone -b main git@github.com:brockai/bomai.git ~/bomai
-            
+
   Deploy-Bomai:
     runs-on: ubuntu-latest
     needs: Clone-bomai

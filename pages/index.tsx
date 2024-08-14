@@ -1,27 +1,27 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import Icon from '../components/icon/Icon';
-import Button, { ButtonGroup } from '../components/bootstrap/Button';
-import { STEPS } from '@/interfaces/steps';
 import DataFrame from '@/components/brockai/DataFrame';
-import DropZone from '@/components/brockai/DropZone';
+import FilePondUploader from '@/components/brockai/FilePond';
 import Page from '@/layout/Page/Page';
 import PageWrapper from '@/layout/PageWrapper/PageWrapper';
 import Head from 'next/head';
 import NavBar from '@/components/brockai/NavBar';
-
+import StepContext from '../context/stepContext';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Index = () => {
 
-    const [step, setStep] = useState<any>('Step1');
+    const { step, setStep } = useContext(StepContext);
+    const { isAuthenticated } = useAuth0();
 
     return (
         <PageWrapper>
             <Head>
-                <title>Compliancy BOM Check</title>
+                <title>BOM Check AI</title>
             </Head>
             <Page>
-                <NavBar />
+                <NavBar isAuthenticated={isAuthenticated}/>
                 <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
                     <div className="max-w-xl mb-5 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12 pt-2">
                         <p className="text-white text-2xl">
@@ -31,7 +31,9 @@ const Index = () => {
                     <div className="grid gap-8 row-gap-0 lg:grid-cols-3">
                         <div className="relative text-center"
                             onClick={() => {
-                                setStep('Step1')
+                                if (setStep) {
+                                    setStep('Step1')
+                                }
                             }}>
                             <div className="flex items-center justify-center pb-3">
                                 <Icon
@@ -42,7 +44,7 @@ const Index = () => {
                             </div>
                             <h6 className={`mb-2 fs-3 ${step === 'Step1' ? 'text-danger' : 'text-white'}`}>Step 1 - Upload BOM</h6>
                             <p className={`max-w-md mb-3 text-xl ${step === 'Step1' ? 'text-danger' : 'text-white'} sm:mx-auto pt-2`}>
-                                Store BOM in Vector database to enable processing & training
+                                Store BOM in Vector Database to Enable Processing & Training
                             </p>
                             <div className="top-0 right-0 flex items-center justify-center h-24 lg:-mr-8 lg:absolute">
                                 <svg
@@ -70,7 +72,9 @@ const Index = () => {
                             </div>
                         </div>
                         <div className="relative text-center" onClick={() => {
-                            setStep('Step2')
+                            if (setStep) {
+                                setStep('Step2')
+                            }
                         }}>
                             <div className="flex items-center justify-center pb-3">
                                 <Icon
@@ -110,7 +114,9 @@ const Index = () => {
                         </div>
                         <div className="relative text-center"
                             onClick={() => {
-                                setStep('Step3')
+                                if (setStep) {
+                                    setStep('Step3')
+                                }
                             }}>
                             <div className="flex items-center justify-center pb-3">
                                 <Icon
@@ -126,9 +132,9 @@ const Index = () => {
                         </div>
                     </div>
                     <div>
-                        {step === 'Step1' && <DropZone />}
-                        {step === 'Step2' && <DataFrame />}
-                        {step === 'Step3' && <DataFrame />}
+                        {step === 'Step1' && <FilePondUploader isAuthenticated={isAuthenticated}/>}
+                        {step === 'Step2' && <DataFrame isAuthenticated={isAuthenticated}/>}
+                        {step === 'Step3' && <DataFrame isAuthenticated={isAuthenticated}/>}
                     </div>
                 </div>
             </Page>

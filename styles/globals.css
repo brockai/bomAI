@@ -20,20 +20,6 @@
   background-color: #ff4b4b;
 }
 
-.dropzone {
-  border: 1px solid red;
-  border-radius: 4px;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: border-color 0.3s, background-color 0.3s;
-}
-
-.dropzone:hover {
-  border-color: rgba(255, 0, 0, 0.7);
-  background-color: rgba(255, 0, 0, 0.1);
-}
-
 .relative.text-center {
   position: relative;
   text-align: center;
@@ -54,4 +40,16 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.filepond--panel-root {
+  border-radius: .5em;
+  border-width: 1px;
+  border-color: #f35421;
+  background-color: black !important;
+}
+
+.filepond--drop-label {
+  font-size: 1.5em !important;
+  color: #f35421 !important;
 }
