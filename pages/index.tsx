@@ -44,7 +44,7 @@ const Index = () => {
                             </div>
                             <h6 className={`mb-2 fs-3 ${step === 'Step1' ? 'text-danger' : 'text-white'}`}>Step 1 - Upload BOM</h6>
                             <p className={`max-w-md mb-3 text-xl ${step === 'Step1' ? 'text-danger' : 'text-white'} sm:mx-auto pt-2`}>
-                                Store BOM in Vector Database to Enable Processing & Training
+                                Upload BOM to check components for regulatory compliance
                             </p>
                             <div className="top-0 right-0 flex items-center justify-center h-24 lg:-mr-8 lg:absolute">
                                 <svg
