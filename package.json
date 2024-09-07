@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "@auth0/nextjs-auth0": "^3.5.0",
     "@types/pascalcase": "^1.0.3",
     "animate.css": "^4.1.1",
     "apexcharts": "^3.52.0",
