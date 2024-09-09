@@ -1,0 +1,29 @@
+name: Trigger Processing Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  trigger-paperspace:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger Gradient Job
+      run: |
+        curl -X POST "https://api.paperspace.io/jobs/v2/createJob" \
+        -H "x-api-key: ${{ secrets.PAPERSPACE_API_KEY }}" \
+        -H "Content-Type: application/json" \
+        -d '{
+              "project": ${{ secrets.PAPERSPACE_PROJECT_ID }},
+              "machineType": "P5000",
+              "container": "paperspace/tensorflow:2.0.0-gpu-py3",
+              
+              "command": "gradient workflows run ${{ secrets.PAPERSPACE_PROCESSING_WORKFLOW_ID }}",
+              "workspaceUrl": "git+https://github.com/brockai/bomai.git"
+            }'
+
+    - name: Notify Success
+      run: echo "Paperspace Gradient job triggered successfully."
+
+
+      

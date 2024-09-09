@@ -6,6 +6,7 @@ import Page from '@/layout/Page/Page';
 import useIsMobile from '@/hooks/useIsMobile';
 import { fetchIndex } from '@/services/opensearchService';
 import dayjs from 'dayjs';
+import { triggerWorkflow } from '@/services/dispatchService ';
 
 interface DataFrameComponentProps {
     isAuthenticated: boolean;
@@ -18,6 +19,11 @@ const DataFrame: React.FC<DataFrameComponentProps> = ({ isAuthenticated }) => {
     const tenant_id = localStorage.getItem('bai_tenant') || 'bclayton403';
 
     const isMobile = useIsMobile();
+
+    const triggerProcessingWorkflow = async () => {
+        console.log('got here')
+        await triggerWorkflow();
+    }
 
     const fetchTenantFiles = async () => {
 
@@ -94,7 +100,7 @@ const DataFrame: React.FC<DataFrameComponentProps> = ({ isAuthenticated }) => {
                                     </thead>
                                     <tbody>
                                         {tenantFiles && tenantFiles.length > 0 && tenantFiles.map((file: any, index: number) => (
-                                            <tr key={index}>
+                                            <tr key={index} onClick={triggerProcessingWorkflow}>
                                                 <td className="fs-6">{file['timestamp']}</td>
                                                 <td className="fs-6">{file['name']}</td>
                                                 <td className="fs-6">{file['size']}</td>
