@@ -21,6 +21,7 @@ const DataFrame: React.FC<DataFrameComponentProps> = ({ isAuthenticated }) => {
     const isMobile = useIsMobile();
 
     const triggerProcessingWorkflow = async () => {
+        
         console.log('got here')
         await triggerWorkflow();
     }
